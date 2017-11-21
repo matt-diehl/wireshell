@@ -44,6 +44,7 @@ class BackupDatabaseCommand extends PwConnector {
     $config = \ProcessWire\wire('config');
     $database = $config->dbName;
     $host = $config->dbHost;
+    $port = $config->dbPort;
     $user = $config->dbUser;
     $pass = $config->dbPass;
 
@@ -56,7 +57,7 @@ class BackupDatabaseCommand extends PwConnector {
       $dump = new Dump;
       $dump
         ->file($target . $filename)
-        ->dsn("mysql:dbname={$database};host={$host}")
+        ->dsn("mysql:dbname={$database};host={$host};port={$port}")
         ->user($user)
         ->pass($pass)
         ->tmp(getcwd() . 'site/assets/tmp');
